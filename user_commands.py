@@ -33,9 +33,17 @@ def u_input():
             connected = True
             while connected is True:
                 connected_input = input('>: ')
-                if connected_input == 'disconnect':
+                connected_input = connected_input.split(' ')
+                if connected_input[0] == 'ls':
+                    server.print_files()
+
+                elif connected_input[0] == 'disconnect':
                     connected = False
                     print('disconnected from ' + server.name)
+
+                elif connected_input[0] == 'cat':
+                    server.print_file_content(connected_input[1])
+
                 else:
                     print('still connected')
 

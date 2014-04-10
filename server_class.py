@@ -8,6 +8,7 @@ class Server(object):
         self.storage = serverattributes[3]
         self.ram = serverattributes[4]
         self.location = serverattributes[5]
+        self.files = serverattributes[-1]
         #security: 0=completely open 1= ApachePW
 
     def print_name(self):
@@ -20,3 +21,14 @@ class Server(object):
 
     def ports(self):
         print(self.port)
+
+    def print_files(self):
+        for file in self.files:
+            print(file[0])
+
+    def print_file_content(self, filename):
+        for file in self.files:
+            if file[0] == filename:
+                print(file[1])
+            else:
+                pass
