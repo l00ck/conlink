@@ -13,8 +13,10 @@ class Server(object):
     def print_name(self):
         print(self.name)
 
-    def serverinfo(self):
-        print(self.serverattributes)
+    def server_info(self):
+        print(self.cpu)
+        print(self.ram)
+        print(self.location)
 
     def ports(self):
         print(self.port)
