@@ -23,8 +23,11 @@ class Server(object):
         print(self.port)
 
     def print_files(self):
-        for file in self.files:
-            print(file[0])
+        if self.files != ['empty']:
+            for file in self.files:
+                print(file[0])
+        else:
+            print('no files')
 
     def print_file_content(self, filename):
         for file in self.files:

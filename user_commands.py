@@ -1,19 +1,21 @@
 import serverhash
 import server_class
 
-def scan_func(user_input, server):
-    try:
-        if user_input[1] == 'network':
-            for k in serverhash.serverdic:
-                print(k)
 
-        elif user_input[1] == server.name:
+def scan_func(user_input, server):
+    if user_input[1] == 'network':
+        for k in serverhash.serverdic:
+            print(k)
+
+    elif server is not None:
+        if user_input[1] == server.name:
             server.server_info()
 
-        elif user_input[1] == 'ports' and server is not None:
+        elif user_input[1] == 'ports' and user_input[2] == server.name:
             server.ports()
-    except IndexError:
+    else:
         print('scan what?')
+
 
 def global_func(user_input, server):
     if user_input[1] == server.name:
