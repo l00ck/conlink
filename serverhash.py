@@ -2,9 +2,8 @@ import os
 
 serverdic = {}
 
-
 scriptpath = os.path.abspath(__file__)
-serverpath = os.path.dirname(scriptpath)+"\servers"
+serverpath = os.path.dirname(scriptpath) + "\servers"
 serverdirs = os.listdir(serverpath)
 
 
@@ -24,13 +23,9 @@ def read_files(folder):
             content.close()
             f = [f, a]
             l.append(f)
-
-
-
         return l
 
     else:
-
         return ['empty']
 
 
@@ -42,6 +37,5 @@ for folder in serverdirs:
     #print(f)
     serverdic[folder] = x
     info.close()
-
 
 print(serverdic)
