@@ -34,8 +34,5 @@ for folder in serverdirs:
     x = info_parser(info)
     f = read_files(serverpath + "\\" + folder + "\\files")
     x.append(f)
-    #print(f)
     serverdic[folder] = x
     info.close()
-
-print(serverdic)

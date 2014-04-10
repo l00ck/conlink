@@ -3,7 +3,7 @@ import server_class
 
 
 def scan_func(user_input, server):
-    if user_input[1] == 'network':
+    if len(user_input) > 1 and user_input[1] == 'network':
         for k in serverhash.serverdic:
             print(k)
 
@@ -18,7 +18,7 @@ def scan_func(user_input, server):
 
 
 def global_func(user_input, server):
-    if user_input[1] == server.name:
+    if len(user_input) > 1 and server is not None:
         print('connected to ' + server.name)
         connected = True
         while connected is True:
@@ -36,6 +36,10 @@ def global_func(user_input, server):
 
             else:
                 print('still connected')
+    elif len(user_input) == 1:
+        print('Server not specified')
+    else:
+        print('Server not found')
 
 
 def u_input():
@@ -54,5 +58,3 @@ def u_input():
 
     if user_input[0] == 'connect':
         global_func(user_input, server)
-
-
