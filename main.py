@@ -1,7 +1,7 @@
-import rename
+import user_commands
 
 if __name__ == "__main__":
     while True:
-        rename.u_input()
+        user_commands.u_input()
 else:
     print('this does nothing')
