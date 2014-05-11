@@ -1,5 +1,6 @@
 import serverhash
 
+
 class Server(object):
     def __init__(self, serverattributes, servername):
         self.serverattributes = serverattributes
@@ -38,23 +39,29 @@ class Server(object):
             else:
                 pass
 
-    def global_commands(self):
+    def server_commands(self, command):
+        if command == 'disconnect':
+            localhost = Localhost(serverhash.serverdic['localhost'], 'localhost')
+            print('disconnected from ' + self.name)
+            localhost.interface()
+        else:
+            pass
+
+    def global_commands(self, command):
+        if command == 'ls':
+            self.print_files()
+        elif command == 'cat':
+            self.print_file_content(command)
+        else:
+            pass
+
+    def interface(self):
         client_connected = True
         while client_connected is True:
             commands = input('>: ')
             commands = commands.split(' ')
-            if commands[0] == 'ls':
-                self.print_files()
-            elif commands[0] == 'disconnect':
-                client_connected = False
-                print('disconnected from ' + self.name)
-                localhost = Localhost(serverhash.serverdic["localhost"], "localhost")
-                localhost.global_commands()
-            elif commands[0] == 'cat':
-                self.print_file_content(commands[1])
-
-            else:
-                print('still connected')
+            self.server_commands(commands[0])
+            self.global_commands(commands[0])
 
 
 class Localhost(Server):

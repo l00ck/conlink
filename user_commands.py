@@ -21,7 +21,7 @@ def scan_func(user_input, server):
 def try_to_connect(user_input, server):
     if len(user_input) > 1 and server is not None:
         print('connected to ' + server.name)
-        server.global_commands()
+        server.interface()
     elif len(user_input) == 1:
         print('Server not specified')
     else:
