@@ -2,8 +2,10 @@ import serverhash
 import server_class
 
 
-Connected = False
+
 localhost = server_class.Server(serverhash.serverdic["localhost"], "localhost")
+
+
 def scan_func(user_input, server):
     if len(user_input) > 1 and user_input[1] == 'network':
         for k in serverhash.serverdic:
@@ -19,26 +21,10 @@ def scan_func(user_input, server):
         print('scan what?')
 
 
-def global_func(user_input, server):
-    global Connected
+def try_to_connect(user_input, server):
     if len(user_input) > 1 and server is not None:
         print('connected to ' + server.name)
-        while Connected is True:
-            connected_input = input('>: ')
-            connected_input = connected_input.split(' ')
-            if connected_input[0] == 'ls':
-                server.print_files()
-
-            elif connected_input[0] == 'disconnect':
-                Connected = False
-                global_func(user_input, localhost)
-                print('disconnected from ' + server.name)
-
-            elif connected_input[0] == 'cat':
-                server.print_file_content(connected_input[1])
-
-            else:
-                print('still connected')
+        server.global_commands()
     elif len(user_input) == 1:
         print('Server not specified')
     else:
@@ -60,7 +46,4 @@ def u_input():
         scan_func(user_input, server)
 
     if user_input[0] == 'connect':
-
-        global Connected
-        Connected = True
-        global_func(user_input, server)
+        try_to_connect(user_input, server)

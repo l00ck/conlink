@@ -36,6 +36,24 @@ class Server(object):
             else:
                 pass
 
+    def global_commands(self):
+        client_connected = True
+        while client_connected is True:
+            commands = input('>: ')
+            commands = commands.split(' ')
+            if commands[0] == 'ls':
+                self.print_files()
+
+            elif commands[0] == 'disconnect':
+                client_connected = False
+                print('disconnected from ' + self.name)
+
+            elif commands[0] == 'cat':
+                self.print_file_content(commands[1])
+
+            else:
+                print('still connected')
+
 
 class Localhost(Server):
     def __init__(self):
