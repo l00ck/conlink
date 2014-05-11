@@ -35,3 +35,11 @@ class Server(object):
                 print(file[1])
             else:
                 pass
+
+
+class Localhost(Server):
+    def __init__(self):
+        """
+
+
+        """
