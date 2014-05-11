@@ -3,9 +3,6 @@ import server_class
 
 
 
-localhost = server_class.Server(serverhash.serverdic["localhost"], "localhost")
-
-
 def scan_func(user_input, server):
     if len(user_input) > 1 and user_input[1] == 'network':
         for k in serverhash.serverdic:

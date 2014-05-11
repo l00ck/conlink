@@ -1,3 +1,5 @@
+import serverhash
+
 class Server(object):
     def __init__(self, serverattributes, servername):
         self.serverattributes = serverattributes
@@ -43,11 +45,11 @@ class Server(object):
             commands = commands.split(' ')
             if commands[0] == 'ls':
                 self.print_files()
-
             elif commands[0] == 'disconnect':
                 client_connected = False
                 print('disconnected from ' + self.name)
-
+                localhost = Localhost(serverhash.serverdic["localhost"], "localhost")
+                localhost.global_commands()
             elif commands[0] == 'cat':
                 self.print_file_content(commands[1])
 
@@ -56,8 +58,5 @@ class Server(object):
 
 
 class Localhost(Server):
-    def __init__(self):
-        """
-
-
-        """
+    def asd(self):
+        print(self.name)
