@@ -1,7 +1,11 @@
-import user_commands
+import serverhash
+import server_class
 
 if __name__ == "__main__":
+    localhost = server_class.Localhost(serverhash.serverdic['localhost'], 'localhost')
+    localhost.interface()
+
     while True:
-        user_commands.u_input()
+        localhost.interface()
 else:
     print('this does nothing')

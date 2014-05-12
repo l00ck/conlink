@@ -65,5 +65,52 @@ class Server(object):
 
 
 class Localhost(Server):
-    def asd(self):
-        print(self.name)
+
+    def get_server(self, user_input):
+        for word in user_input:
+            if word in serverhash.serverdic:
+                server = Server(serverhash.serverdic[word], word)
+                return server
+        else:
+            None
+
+    def scan(self, user_input, server):
+        if len(user_input) > 1 and user_input[1] == 'network':
+            for k in serverhash.serverdic:
+                print(k)
+        elif server is not None:
+            if user_input[1] == server.name:
+                server.server_info()
+            elif user_input[1] == 'ports' and user_input[2] == server.name:
+                server.ports()
+        else:
+            print('scan what?')
+
+    def try_to_connect(self, user_input, server):
+        if len(user_input) > 1 and server is not None:
+            print('connected to ' + server.name)
+            server.interface()
+        elif len(user_input) == 1:
+            print('Server not specified')
+        else:
+            print('Server not found')
+
+
+    def localhost_commands(self, user_input):
+        server = self.get_server(user_input)
+#        print(server.name)
+
+        if user_input[0] == 'scan':
+            self.scan(user_input, server)
+        if user_input[0] == 'connect':
+            self.try_to_connect(user_input, server)
+
+
+
+
+    def interface(self):
+        client_connected = True
+        while client_connected is True:
+            commands = input('>: ')
+            commands = commands.split(' ')
+            self.localhost_commands(commands)
